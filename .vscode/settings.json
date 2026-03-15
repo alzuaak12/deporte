@@ -1,0 +1,14 @@
+{
+    "search.exclude": {
+        "**/*.git": false
+    },
+    "files.readonlyInclude": {
+        "**/.git": false
+    },
+    "files.readonlyExclude": {
+        "**/.git": false
+    },
+    "files.exclude": {
+        "**/.git": false
+    }
+}
