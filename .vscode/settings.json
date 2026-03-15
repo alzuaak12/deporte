@@ -1,0 +1,11 @@
+{
+    "search.exclude": {
+        "**/*.git": true
+    },
+    "files.readonlyInclude": {
+        "**/.git": true
+    },
+    "files.readonlyExclude": {
+        "**/.git": true
+    }
+}
