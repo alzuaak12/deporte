@@ -1,16 +1,20 @@
-name: Deploy
+name: Test pipeline
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  deploy:
+
+  test:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - uses: actions/checkout@v4
 
-      - name: Deploy
-        run: echo "Deploy ejecutado"
-
+      - name: Test mensaje
+        run: |
+          echo "hola pipeline"
+          echo "Deploy ejecutado"
