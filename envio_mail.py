@@ -8,9 +8,9 @@ from email.message import EmailMessage
 
 # CONFIGURACIÓN SMTP
 SMTP_SERVER = os.getenv("SMTP_SERVER", "authsmtp.securemail.pro")
-# Por defecto, STARTTLS en 587. Para SSL implícito, usa SMTP_USE_SSL=1 y SMTP_PORT=465.
-SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
-SMTP_USE_SSL = os.getenv("SMTP_USE_SSL", "0") == "1"
+# Proveedor usa SSL implícito en 465 por defecto. Para STARTTLS 587, exporta SMTP_USE_SSL=0 y SMTP_PORT=587.
+SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
+SMTP_USE_SSL = os.getenv("SMTP_USE_SSL", "1") == "1"
 # Credenciales (el archivo mantiene valores por defecto en líneas 16-17)
 EMAIL_USER = os.getenv("EMAIL_USER", "info@theperfectplacegolf.es")
 EMAIL_PASS = os.getenv("EMAIL_PASS", "tppg2026.")
