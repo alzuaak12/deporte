@@ -1,4 +1,5 @@
 import csv
+import os
 import smtplib
 import ssl
 import time
@@ -6,9 +7,12 @@ from email.message import EmailMessage
 
 # CONFIGURACIÓN SMTP
 SMTP_SERVER = "authsmtp.securemail.pro"
-SMTP_PORT = 465
-EMAIL_USER = "info@theperfectplacegolf.es"
-EMAIL_PASS = "Tppg2026."
+# Recomendado: STARTTLS en 587. Cambia a 465 con SMTP_SSL si tu proveedor lo exige.
+SMTP_PORT = 587
+# Toma credenciales de variables de entorno si existen; de lo contrario usa los valores actuales.
+EMAIL_USER = os.getenv("EMAIL_USER", "info@theperfectplacegolf.es")
+EMAIL_PASS = os.getenv("EMAIL_PASS", "Tppg2026.")
+SMTP_DEBUG = os.getenv("SMTP_DEBUG", "0") == "1"
 
 # CONFIGURACIÓN ENVÍO
 CSV_FILE = "contactos.csv"
@@ -28,7 +32,14 @@ Tu empresa
 def enviar_emails():
     context = ssl.create_default_context()
 
-    with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, context=context) as server:
+    # Conexión con STARTTLS (puerto 587). Si tu servidor requiere SSL implícito (465),
+    # cambia a smtplib.SMTP_SSL y elimina starttls().
+    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=30) as server:
+        if SMTP_DEBUG:
+            server.set_debuglevel(1)
+        server.ehlo()
+        server.starttls(context=context)
+        server.ehlo()
         server.login(EMAIL_USER, EMAIL_PASS)
 
         with open(CSV_FILE, newline='', encoding='utf-8') as csvfile:
