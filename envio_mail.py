@@ -13,7 +13,7 @@ SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 SMTP_USE_SSL = os.getenv("SMTP_USE_SSL", "0") == "1"
 # Credenciales (el archivo mantiene valores por defecto en líneas 16-17)
 EMAIL_USER = os.getenv("EMAIL_USER", "info@theperfectplacegolf.es")
-EMAIL_PASS = os.getenv("EMAIL_PASS", "Tppg2026.")
+EMAIL_PASS = os.getenv("EMAIL_PASS", "tppg2026.")
 SMTP_DEBUG = os.getenv("SMTP_DEBUG", "0") == "1"
 SMTP_AUTH_MECH = os.getenv("SMTP_AUTH_MECH", "AUTO").upper()  # AUTO | PLAIN | LOGIN
 SMTP_PROBE = os.getenv("SMTP_PROBE", "0") == "1"
